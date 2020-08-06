@@ -113,15 +113,15 @@ int main (int argc, const char * argv[]){
   double *f;
   double **macro, **grad;
 
-  f = (double *) malloc (N_f * sizeof(double));
+  f = (double *) malloc (NPOP_TOTAL * sizeof(double));
 
-  macro = (double **) malloc (2*xMaxp*yMaxp*sizeof(double *));
-  for(i=0; i<(2 * xMaxp * yMaxp); i++){
+  macro = (double **) malloc (2*XMAXP*YMAXP*sizeof(double *));
+  for(i=0; i<(2 * XMAXP * YMAXP); i++){
         macro[i] = (double *)malloc(sizeof(double)*10);
         }
 
-  grad = (double **) malloc (2*xMaxp*yMaxp*sizeof(double *));
-  for(i=0; i<(2 * xMaxp * yMaxp); i++){
+  grad = (double **) malloc (2*XMAXP*YMAXP*sizeof(double *));
+  for(i=0; i<(2 * XMAXP * YMAXP); i++){
         grad[i] = (double *)malloc(sizeof(double)*4);
         }
 
@@ -197,7 +197,7 @@ int main (int argc, const char * argv[]){
     
     ComputeFcol_BC(f);
 
-    if(!(s % period)){
+    if(!(s % PERIOD)){
 
       fprintf(stdout, "time-step : %d\n", s);
       double physical_time = (s * DX)/(sqrt(3)*Csound);

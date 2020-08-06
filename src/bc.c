@@ -24,23 +24,23 @@ void ComputeFcol_BC(double *f){
 	int i_in, i_out, j_in, j_out;
 	int idx_in, idx_out, off;
 
-	off = current_slot*xMaxp*yMaxp*NPOP;
+	off = current_slot*XMAXP*YMAXP*NPOP;
 
 	// faces
 	i_out = 1;
-	i_in = xMax + 1;
+	i_in = XMAX + 1;
 
-	for(j=1; j<=yMax; j++)
+	for(j=1; j<=YMAX; j++)
 			for(l=0; l<NPOP; l++){
 				idx_out =  off + IDF(i_out,j,l);
 				idx_in = off + IDF(i_in,j,l);
 				f[idx_in] = f[idx_out];
 			}
 
-	i_out = xMax;
+	i_out = XMAX;
 	i_in = 0;
 
-	for(j=1; j<=yMax; j++)
+	for(j=1; j<=YMAX; j++)
 			for(l=0; l<NPOP; l++){
 				idx_out =  off + IDF(i_out,j,l);
 				idx_in = off + IDF(i_in,j,l);
@@ -48,19 +48,19 @@ void ComputeFcol_BC(double *f){
 			}
 
 	j_out = 1;
-	j_in = yMax + 1;
+	j_in = YMAX + 1;
 
-	for(i=1; i<=xMax; i++)
+	for(i=1; i<=XMAX; i++)
     	for(l=0; l<NPOP; l++){
 			idx_out =  off + IDF(i,j_out,l);
 			idx_in = off + IDF(i,j_in,l);
 			f[idx_in] = f[idx_out];
 			}
 
-	j_out = yMax;
+	j_out = YMAX;
 	j_in = 0;
 
-	for(i=1; i<=xMax; i++)
+	for(i=1; i<=XMAX; i++)
 		for(l=0; l<NPOP; l++){
 			idx_out =  off + IDF(i,j_out,l);
 			idx_in = off + IDF(i,j_in,l);
@@ -70,16 +70,16 @@ void ComputeFcol_BC(double *f){
 	//edges
     i_out = 1;
     j_out = 1;
-    i_in = xMax + 1;
-    j_in = yMax + 1;
+    i_in = XMAX + 1;
+    j_in = YMAX + 1;
     for(l=0; l<NPOP; l++){
     	idx_out = off + IDF(i_out, j_out,l);
     	idx_in = off + IDF(i_in,j_in,l);
     	f[idx_in] = f[idx_out];
     }
 
-    i_out = xMax;
-    j_out = yMax;
+    i_out = XMAX;
+    j_out = YMAX;
     i_in = 0;
     j_in = 0;
     for(l=0; l<NPOP; l++){
@@ -88,10 +88,10 @@ void ComputeFcol_BC(double *f){
     	f[idx_in] = f[idx_out];
     }
 
-    i_out = xMax;
+    i_out = XMAX;
     j_out = 1;
     i_in = 0;
-    j_in = yMax + 1;
+    j_in = YMAX + 1;
     for(l=0; l<NPOP; l++){
     	idx_out = off + IDF(i_out,j_out,l);
     	idx_in = off + IDF(i_in,j_in,l);
@@ -99,8 +99,8 @@ void ComputeFcol_BC(double *f){
     }
 
     i_out = 1;
-    j_out = yMax;
-    i_in = xMax + 1;
+    j_out = YMAX;
+    i_in = XMAX + 1;
     j_in = 0;
     for(l=0; l<NPOP; l++){
     	idx_out = off + IDF(i_out,j_out,l);

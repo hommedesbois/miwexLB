@@ -18,8 +18,8 @@ void InitializeFluid(double *cell, double **macro, int testcase){
     double r0;
     double Rc = 0.1;
 
-    double Xc = (double)(xMax/2.)*DX;
-    double Yc = (double)(yMax/2.)*DX;
+    double Xc = (double)(XMAX/2.)*DX;
+    double Yc = (double)(YMAX/2.)*DX;
 
     double xpos, ypos; // position
     double r2;
@@ -27,12 +27,12 @@ void InitializeFluid(double *cell, double **macro, int testcase){
     double duxdx, duxdy, duydx, duydy;
 
 	double a0;
-	double Length = DX * yMax;
+	double Length = DX * YMAX;
 
     double feq, fneq;
 
-	for(i=0; i<xMaxp; i++)
-		for(j=0; j<yMaxp; j++){
+	for(i=0; i<XMAXP; i++)
+		for(j=0; j<YMAXP; j++){
 
             id = IDM(i,j);
             // position of cell centres in 2D mesh with origin (0,0). First and last row of points lies outside the mesh --> required for periodicity condition

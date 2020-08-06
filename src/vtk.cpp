@@ -21,7 +21,7 @@ using namespace std;
 
 extern "C" void DumpMacro(double **macro, int index){
 
-    int off = current_slot * xMaxp * yMaxp;
+    int off = current_slot * XMAXP * YMAXP;
 
 	stringstream output_filename;
 	output_filename << "vtk/FluidSimulationDomain_it_" << index << ".vtk";
@@ -50,12 +50,12 @@ extern "C" void DumpMacro(double **macro, int index){
     output_file << 0.01 << endl;
 
 
-	output_file << "CELL_DATA " << xMax * yMax << endl;
+	output_file << "CELL_DATA " << XMAX * YMAX << endl;
 	output_file << "SCALARS rho_prime float 1 \n";
 	output_file << "LOOKUP_TABLE default\n";
 
-		for(int Y=1; Y<=yMax; Y++)
-			for(int X=1; X<=xMax; X++){
+		for(int Y=1; Y<=YMAX; Y++)
+			for(int X=1; X<=XMAX; X++){
 
 				int idx = off + IDM(X,Y);
 				output_file << (macro[idx][RHO] - rho0) << endl;
@@ -63,8 +63,8 @@ extern "C" void DumpMacro(double **macro, int index){
     output_file << "SCALARS velocity float 3 \n";
 	output_file << "LOOKUP_TABLE default\n";
 
-		for(int Y=1; Y<=yMax; Y++)
-			for(int X=1; X<= xMax; X++){
+		for(int Y=1; Y<=YMAX; Y++)
+			for(int X=1; X<= XMAX; X++){
 
 				int idx = off + IDM(X,Y);
 				double ux = (macro[idx][RHOUX]/macro[idx][RHO])*Csound*sqrt(3);

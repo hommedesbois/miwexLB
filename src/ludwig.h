@@ -7,8 +7,8 @@
  */
 
 #define NSTEPS 1001
-#define period 100
-#define sigma 0.98 // Coef for HRR scheme
+#define PERIOD 100
+#define SIGMA 0.98 // Coef for HRR scheme
 
 enum {UXX=0, UXY, UYX, UYY};
 enum {RHO=0, RHOUX, RHOUY, PXX, PXY, PYX, PYY};
@@ -31,25 +31,32 @@ enum {RHO=0, RHOUX, RHOUY, PXX, PXY, PYX, PYY};
  * DATA POINTS
  */
 
-#define xMax 100
-#define yMax 100
+#define XMAX 100
+#define YMAX 100
 
-#define xMaxp (xMax + 2) // padded dimensions for periodic BC and transition overlay
-#define yMaxp (yMax + 2)
+#define XMAXP (XMAX + 2) // padded dimensions for periodic BC and transition overlay
+#define YMAXP (YMAX + 2)
 
 /*
  * MESH
  */
 
-#define NX (xMax + 1)
-#define NY (yMax + 1)
+#define NX (XMAX + 1)
+#define NY (YMAX + 1)
 
-#define NPOP 9 // model D2Q9 by default
+/*
+ * NUMBER OF DISTRIBUTIONS
+ */ 
 
-#define N_f xMaxp * yMaxp * NPOP * 2
+#define NPOP 9 // D2Q9 lattice
+#define NPOP_TOTAL XMAXP * YMAXP * NPOP * 2
 
-#define IDF(i,j,l)  (NPOP*((j)+yMaxp*(i))+(l))
-#define IDM(i,j)    (i) * yMaxp + (j)
+/*
+ * INDEX FOR ARRAYS OF DISTRIBUTION AND MACROSCOPIC VARIABLES
+ */  
+
+#define IDF(i,j,l)  (NPOP*((j)+YMAXP*(i))+(l))
+#define IDM(i,j)    (i) * YMAXP + (j)
 
 // shared variables
 extern const double w[NPOP];

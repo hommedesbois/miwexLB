@@ -14,10 +14,10 @@ double rho, rho_u, rho_v, u, v, feq, f_temp;
 double Pxx_eq, Pxy_eq, Pyy_eq;
 double Pxx_neq, Pxy_neq, Pyy_neq;
 
-off = current_slot * xMaxp * yMaxp;
+off = current_slot * XMAXP * YMAXP;
 
-for(i=1; i<=xMax; i++)
-    for(j=1; j<=yMax; j++){
+for(i=1; i<=XMAX; i++)
+    for(j=1; j<=YMAX; j++){
 
         idm = off + IDM(i,j);
 
@@ -70,11 +70,11 @@ void HRRCollision(double *cell, double **macro, double **grad){
     double axx, ayy, axy;
 
 
-    off = current_slot * xMaxp * yMaxp;
+    off = current_slot * XMAXP * YMAXP;
 
 
-    for(i=1; i<=xMax; i++)
-        for(j=1; j<=yMax; j++){
+    for(i=1; i<=XMAX; i++)
+        for(j=1; j<=YMAX; j++){
 
 
           idm = off + IDM(i,j);
@@ -86,8 +86,6 @@ void HRRCollision(double *cell, double **macro, double **grad){
           u = rho_u/rho;
           v = rho_v/rho;
 
-          //Sxx = grad[id_m][UXX] - 0.5 * (grad[id_m][UXX] + grad[id_m][UYY]);
-          //Syy = grad[id_m][UYY] - 0.5 * (grad[id_m][UXX] + grad[id_m][UYY]);
           Sxx = grad[idm][UXX] ;
           Syy = grad[idm][UYY] ;
           Sxy = 0.5 * (grad[idm][UXY] + grad[idm][UYX]);
@@ -100,9 +98,9 @@ void HRRCollision(double *cell, double **macro, double **grad){
           Pxy_neq     = macro[idm][4]-Pxy_eq;
           Pyy_neq     = macro[idm][6]-Pyy_eq;
 
-          axx = Pxx_neq * sigma + (1.0-sigma)*(-2.0*tau*rho*Sxx*(1./3.)); 
-          ayy = Pyy_neq * sigma + (1.0-sigma)*(-2.0*tau*rho*Syy*(1./3.)); 
-          axy = Pxy_neq * sigma + (1.0-sigma)*(-2.0*tau*rho*Sxy*(1./3.)); 
+          axx = Pxx_neq * SIGMA + (1.0-SIGMA)*(-2.0*tau*rho*Sxx*(1./3.)); 
+          ayy = Pyy_neq * SIGMA + (1.0-SIGMA)*(-2.0*tau*rho*Syy*(1./3.)); 
+          axy = Pxy_neq * SIGMA + (1.0-SIGMA)*(-2.0*tau*rho*Sxy*(1./3.)); 
 
 
           for(l=0; l<NPOP; l++){
