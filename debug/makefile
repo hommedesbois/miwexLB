@@ -41,7 +41,7 @@ endif
 all: miwexLB
 
 # Tool invocations
-miwxLBM: $(OBJS) $(USER_OBJS)
+miwexLB: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
 	g++  -o "miwexLB" $(OBJS) $(USER_OBJS) $(LIBS)
