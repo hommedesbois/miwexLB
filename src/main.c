@@ -87,7 +87,9 @@ void ComputeFcol_BC(double *);
 void ComputeMass(double *);
 /**  Write VTK output
   */
-void DumpMacro(double **, int);
+void DumpMacroVTK(double **, int);
+void DumpMacroASCII(double **, int);
+
 
 
 int main (int argc, const char * argv[]){
@@ -168,6 +170,9 @@ int main (int argc, const char * argv[]){
 	system("mkdir -p vtk");
   system("rm vtk/*.*");
 
+  system("mkdir -p ascii");
+  system("rm ascii/*.*");
+
   fprintf(stdout, "# ITERATIONS #\n");
 
 	for(s=0; s<NSTEPS; s++){
@@ -203,7 +208,10 @@ int main (int argc, const char * argv[]){
       double physical_time = (s * DX)/(sqrt(3)*Csound);
       fprintf(stdout, "simulated time: %f s \n", physical_time);
       
-      DumpMacro(macro, index);
+      if(VTK)
+      DumpMacroVTK(macro, index);
+      if(ASCII)
+      DumpMacroASCII(macro, index);
 
       index++;
       }

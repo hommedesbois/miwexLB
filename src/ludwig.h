@@ -10,6 +10,11 @@
 #define PERIOD 100
 #define SIGMA 0.98 // Coef for HRR scheme
 
+// output 
+#define ASCII 1
+#define VTK 1
+
+
 enum {UXX=0, UXY, UYX, UYY};
 enum {RHO=0, RHOUX, RHOUY, PXX, PXY, PYX, PYY};
 

@@ -4,7 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/vt.cpp
+../src/output.cpp
 
 C_SRCS += \
 ../src/bc.c \
@@ -15,7 +15,7 @@ C_SRCS += \
 ../src/main.c 
 
 OBJS += \
-./src/vtk.o \
+./src/output.o \
 ./src/bc.o \
 ./src/init.o \
 ./src/stream.o \
@@ -32,7 +32,7 @@ C_DEPS += \
 ./src/main.d 
 
 CPP_DEPS += \
-./src/vtk.d
+./src/output.d
 
 
 # Each subdirectory must supply rules for building sources it contributes
